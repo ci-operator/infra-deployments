@@ -1,0 +1,8 @@
+---
+- op: replace
+  path: /spec/template/spec/sources/0/helm/parameters
+  value:
+    - name: "mode"
+      value: deployment
+    - name: "fullnameOverride"
+      value: "open-telemetry-opentelemetry-collector"
