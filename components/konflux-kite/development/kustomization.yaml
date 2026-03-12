@@ -39,6 +39,14 @@ configMapGenerator:
     behavior: replace
 
 patches:
+  # Delete the HPA in dev so it doesn't fight the reduced replica count
+  - patch: |-
+      $patch: delete
+      apiVersion: autoscaling/v2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: konflux-kite
+        namespace: konflux-kite
   # Development-specific patches
   - patch: |-
       apiVersion: apps/v1
