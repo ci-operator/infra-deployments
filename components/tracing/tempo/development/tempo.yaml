@@ -6,6 +6,12 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
+  multitenancy:
+    enabled: true
+    mode: openshift
+    authentication:
+      - tenantName: trace-demo
+        tenantId: "1610b0c9-68e7-4b85-bf6b-7e2a5c854a28"
   storage:
     traces:
       backend: pv
