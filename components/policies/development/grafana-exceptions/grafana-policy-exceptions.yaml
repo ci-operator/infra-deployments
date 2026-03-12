@@ -1,0 +1,17 @@
+apiVersion: kyverno.io/v2beta1
+kind: PolicyException
+metadata:
+  name: grafana-docker-io-exception
+  namespace: appstudio-grafana
+spec:
+  exceptions:
+    - policyName: restrict-docker-io-images
+      ruleNames:
+        - restrict-docker-io-images
+  match:
+    any:
+      - resources:
+          kinds:
+            - Pod
+          namespaces:
+            - appstudio-grafana

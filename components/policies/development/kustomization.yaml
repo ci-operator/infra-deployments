@@ -5,6 +5,7 @@ resources:
 - namespace.yaml
 - taskruns-cluster-policy.yaml
 - restrict-docker-io/
+- grafana-exceptions/
 # - cost-management/
 - konflux-rbac/
 - integration/
