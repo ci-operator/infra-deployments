@@ -901,7 +901,7 @@ fi
 if $GRAFANA; then
     log_step "Enabling Grafana dashboard"
     log_info "Removing monitoring-workload-grafana from delete-applications.yaml"
-    local delete_file="$ROOT/argo-cd-apps/overlays/development/delete-applications.yaml"
+    delete_file="$ROOT/argo-cd-apps/overlays/development/delete-applications.yaml"
     yq -i 'select(.metadata.name != "monitoring-workload-grafana")' "$delete_file"
     log_success "Grafana enabled: monitoring-workload-grafana will be deployed"
 fi
