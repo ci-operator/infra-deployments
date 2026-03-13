@@ -1,0 +1,37 @@
+---
+# Development-only PaC overrides:
+# - Custom images from quay.io/rekonflux (distributed-tracing branch)
+# - OTEL exporter endpoint for distributed tracing
+- op: add
+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-controller
+  value:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: pac-controller
+              image: quay.io/rekonflux/pipelines-as-code-controller:latest
+              env:
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+- op: add
+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-watcher
+  value:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: pac-watcher
+              image: quay.io/rekonflux/pipelines-as-code-watcher:latest
+              env:
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+- op: add
+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook
+  value:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: pac-webhook
+              image: quay.io/rekonflux/pipelines-as-code-webhook:latest
