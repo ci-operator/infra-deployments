@@ -82,20 +82,10 @@ spec:
         value: db.password
       - name: primary.resources.requests
         value: "null"
-      - name: primary.podSecurityContext.fsGroup
-        value: "null"
-      - name: primary.podSecurityContext.seccompProfile.type
-        value: RuntimeDefault
-      - name: primary.containerSecurityContext.runAsUser
-        value: "null"
-      - name: primary.containerSecurityContext.allowPrivilegeEscalation
+      - name: primary.podSecurityContext.enabled
         value: "false"
-      - name: primary.containerSecurityContext.runAsNonRoot
-        value: "true"
-      - name: primary.containerSecurityContext.seccompProfile.type
-        value: RuntimeDefault
-      - name: primary.containerSecurityContext.capabilities.drop[0]
-        value: ALL
+      - name: primary.containerSecurityContext.enabled
+        value: "false"
       - name: volumePermissions.enabled
         value: "false"
       - name: shmVolume.enabled

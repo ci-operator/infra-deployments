@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: trace-demo
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+    toolchain.dev.openshift.com/provider: codeready-toolchain
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Application
+metadata:
+  name: konflux-tracing
+  namespace: trace-demo
+spec:
+  displayName: Konflux Tracing
+  description: >-
+    Dogfooding tenant for distributed tracing instrumentation.
+    Components are the Konflux services being instrumented per ADR-0061:
+    PaC, integration-service, release-service.
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pipelines-as-code-controller
+  namespace: trace-demo
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+spec:
+  application: konflux-tracing
+  componentName: pipelines-as-code-controller
+  containerImage: quay.io/rekonflux/pipelines-as-code-controller
+  source:
+    git:
+      url: https://github.com/ci-operator/pipelines-as-code
+      revision: distributed-tracing
+      dockerfileUrl: Containerfile
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pipelines-as-code-watcher
+  namespace: trace-demo
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+spec:
+  application: konflux-tracing
+  componentName: pipelines-as-code-watcher
+  containerImage: quay.io/rekonflux/pipelines-as-code-watcher
+  source:
+    git:
+      url: https://github.com/ci-operator/pipelines-as-code
+      revision: distributed-tracing
+      dockerfileUrl: Containerfile
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pipelines-as-code-webhook
+  namespace: trace-demo
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+spec:
+  application: konflux-tracing
+  componentName: pipelines-as-code-webhook
+  containerImage: quay.io/rekonflux/pipelines-as-code-webhook
+  source:
+    git:
+      url: https://github.com/ci-operator/pipelines-as-code
+      revision: distributed-tracing
+      dockerfileUrl: Containerfile

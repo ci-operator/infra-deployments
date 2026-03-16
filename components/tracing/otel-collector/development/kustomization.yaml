@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - ../base
   - tempo-gateway-rbac.yaml
+  - konflux-tracing-components.yaml
 patchesStrategicMerge:
   - patch-delete-external-secrets.yaml
