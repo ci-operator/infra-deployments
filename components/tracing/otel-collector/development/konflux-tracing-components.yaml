@@ -24,8 +24,6 @@ kind: Component
 metadata:
   name: pipelines-as-code-controller
   namespace: trace-demo
-  annotations:
-    build.appstudio.openshift.io/request: configure-pac
 spec:
   application: konflux-tracing
   componentName: pipelines-as-code-controller
@@ -41,8 +39,6 @@ kind: Component
 metadata:
   name: pipelines-as-code-watcher
   namespace: trace-demo
-  annotations:
-    build.appstudio.openshift.io/request: configure-pac
 spec:
   application: konflux-tracing
   componentName: pipelines-as-code-watcher
@@ -58,8 +54,6 @@ kind: Component
 metadata:
   name: pipelines-as-code-webhook
   namespace: trace-demo
-  annotations:
-    build.appstudio.openshift.io/request: configure-pac
 spec:
   application: konflux-tracing
   componentName: pipelines-as-code-webhook
