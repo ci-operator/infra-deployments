@@ -24,8 +24,6 @@ kind: ImageRepository
 metadata:
   name: pipelines-as-code-controller
   namespace: trace-demo
-  annotations:
-    image-controller.appstudio.redhat.com/update-component-image: "true"
   labels:
     appstudio.redhat.com/component: pipelines-as-code-controller
     appstudio.redhat.com/application: konflux-tracing
@@ -35,8 +33,6 @@ kind: ImageRepository
 metadata:
   name: pipelines-as-code-watcher
   namespace: trace-demo
-  annotations:
-    image-controller.appstudio.redhat.com/update-component-image: "true"
   labels:
     appstudio.redhat.com/component: pipelines-as-code-watcher
     appstudio.redhat.com/application: konflux-tracing
@@ -46,8 +42,6 @@ kind: ImageRepository
 metadata:
   name: pipelines-as-code-webhook
   namespace: trace-demo
-  annotations:
-    image-controller.appstudio.redhat.com/update-component-image: "true"
   labels:
     appstudio.redhat.com/component: pipelines-as-code-webhook
     appstudio.redhat.com/application: konflux-tracing
@@ -60,7 +54,7 @@ metadata:
 spec:
   application: konflux-tracing
   componentName: pipelines-as-code-controller
-  containerImage: quay.io/rekonflux/pipelines-as-code-controller
+  containerImage: quay.io/rekonflux/trace-demo/pipelines-as-code-controller
   source:
     git:
       url: https://github.com/ci-operator/pipelines-as-code
@@ -75,7 +69,7 @@ metadata:
 spec:
   application: konflux-tracing
   componentName: pipelines-as-code-watcher
-  containerImage: quay.io/rekonflux/pipelines-as-code-watcher
+  containerImage: quay.io/rekonflux/trace-demo/pipelines-as-code-watcher
   source:
     git:
       url: https://github.com/ci-operator/pipelines-as-code
@@ -90,7 +84,7 @@ metadata:
 spec:
   application: konflux-tracing
   componentName: pipelines-as-code-webhook
-  containerImage: quay.io/rekonflux/pipelines-as-code-webhook
+  containerImage: quay.io/rekonflux/trace-demo/pipelines-as-code-webhook
   source:
     git:
       url: https://github.com/ci-operator/pipelines-as-code
