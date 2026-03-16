@@ -30,10 +30,11 @@ patches:
       kind: Namespace
       name: appstudio-monitoring
     patch: |
-      - op: add
-        path: /metadata/annotations
-        value:
-          argocd.argoproj.io/compare-options: IgnoreExtraneous
+      $patch: delete
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: appstudio-monitoring
 
 commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
