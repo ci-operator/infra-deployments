@@ -20,6 +20,39 @@ spec:
     PaC, integration-service, release-service.
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: pipelines-as-code-controller
+  namespace: trace-demo
+  annotations:
+    image-controller.appstudio.redhat.com/update-component-image: "true"
+  labels:
+    appstudio.redhat.com/component: pipelines-as-code-controller
+    appstudio.redhat.com/application: konflux-tracing
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: pipelines-as-code-watcher
+  namespace: trace-demo
+  annotations:
+    image-controller.appstudio.redhat.com/update-component-image: "true"
+  labels:
+    appstudio.redhat.com/component: pipelines-as-code-watcher
+    appstudio.redhat.com/application: konflux-tracing
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: pipelines-as-code-webhook
+  namespace: trace-demo
+  annotations:
+    image-controller.appstudio.redhat.com/update-component-image: "true"
+  labels:
+    appstudio.redhat.com/component: pipelines-as-code-webhook
+    appstudio.redhat.com/application: konflux-tracing
+---
+apiVersion: appstudio.redhat.com/v1alpha1
 kind: Component
 metadata:
   name: pipelines-as-code-controller
