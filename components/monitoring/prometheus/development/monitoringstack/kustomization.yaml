@@ -26,6 +26,14 @@ patches:
       kind: Subscription
       group: operators.coreos.com
       version: v1alpha1
+  - target:
+      kind: Namespace
+      name: appstudio-monitoring
+    patch: |
+      - op: add
+        path: /metadata/annotations
+        value:
+          argocd.argoproj.io/compare-options: IgnoreExtraneous
 
 commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
