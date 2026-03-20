@@ -74,8 +74,7 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/image
         value: "quay.io/minio/operator:v5.0.15"
-  # Uncomment after PaC images are built and pushed to quay.io/rekonflux
-  # - path: update-tekton-config-pac.yaml
-  #   target:
-  #     kind: TektonConfig
-  #     name: config
+  - path: update-tekton-config-pac.yaml
+    target:
+      kind: TektonConfig
+      name: config
