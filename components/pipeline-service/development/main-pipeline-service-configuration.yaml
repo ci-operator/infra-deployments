@@ -1972,6 +1972,10 @@ spec:
               spec:
                 containers:
                   - name: pac-controller
+                    image: quay.io/rekonflux/trace-demo/pipelines-as-code-controller:latest
+                    env:
+                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                        value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
                     resources:
                       limits:
                         cpu: 300m
@@ -1985,6 +1989,10 @@ spec:
               spec:
                 containers:
                   - name: pac-watcher
+                    image: quay.io/rekonflux/trace-demo/pipelines-as-code-watcher:latest
+                    env:
+                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                        value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
                     resources:
                       limits:
                         cpu: 300m
@@ -1998,6 +2006,7 @@ spec:
               spec:
                 containers:
                   - name: pac-webhook
+                    image: quay.io/rekonflux/trace-demo/pipelines-as-code-webhook:latest
                     resources:
                       limits:
                         cpu: 300m

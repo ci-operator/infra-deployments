@@ -74,7 +74,5 @@ patches:
       - op: replace
         path: /spec/template/spec/containers/0/image
         value: "quay.io/minio/operator:v5.0.15"
-  - path: update-tekton-config-pac.yaml
-    target:
-      kind: TektonConfig
-      name: config
+  # update-tekton-config-pac.yaml is no longer needed; image and env
+  # overrides are now in main-pipeline-service-configuration.yaml directly.

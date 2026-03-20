@@ -1,7 +1,9 @@
 ---
 # Development-only PaC overrides:
-# - Custom images from quay.io/rekonflux (distributed-tracing branch)
 # - OTEL exporter endpoint for distributed tracing
+# NOTE: Image overrides don't work via TektonConfig options.deployments;
+# the operator applies env vars but ignores the image field. Images are
+# patched directly on the Deployments after operator reconciliation.
 - op: add
   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-controller
   value:
@@ -10,7 +12,6 @@
         spec:
           containers:
             - name: pac-controller
-              image: quay.io/rekonflux/trace-demo/pipelines-as-code-controller:latest
               env:
                 - name: OTEL_EXPORTER_OTLP_ENDPOINT
                   value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
@@ -22,7 +23,6 @@
         spec:
           containers:
             - name: pac-watcher
-              image: quay.io/rekonflux/trace-demo/pipelines-as-code-watcher:latest
               env:
                 - name: OTEL_EXPORTER_OTLP_ENDPOINT
                   value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
@@ -34,4 +34,6 @@
         spec:
           containers:
             - name: pac-webhook
-              image: quay.io/rekonflux/trace-demo/pipelines-as-code-webhook:latest
+              env:
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
