@@ -27,6 +27,9 @@ metadata:
   labels:
     appstudio.redhat.com/component: pipelines-as-code-controller
     appstudio.redhat.com/application: konflux-tracing
+spec:
+  image:
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: ImageRepository
@@ -36,6 +39,9 @@ metadata:
   labels:
     appstudio.redhat.com/component: pipelines-as-code-watcher
     appstudio.redhat.com/application: konflux-tracing
+spec:
+  image:
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: ImageRepository
@@ -45,6 +51,9 @@ metadata:
   labels:
     appstudio.redhat.com/component: pipelines-as-code-webhook
     appstudio.redhat.com/application: konflux-tracing
+spec:
+  image:
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: Component
