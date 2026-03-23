@@ -2145,6 +2145,10 @@ spec:
       pipelinesAsCode:
         enable: true
         options:
+          configMaps:
+            pipelines-as-code-config-observability:
+              data:
+                tracing-protocol: grpc
           deployments:
             pipelines-as-code-controller:
               spec:
