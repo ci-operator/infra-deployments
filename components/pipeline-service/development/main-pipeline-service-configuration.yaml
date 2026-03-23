@@ -2272,11 +2272,11 @@ spec:
       - name: AUTOINSTALL_COMPONENTS
         value: "false"
       - name: IMAGE_PAC_PAC_CONTROLLER
-        value: "quay.io/rekonflux/trace-demo/pipelines-as-code-controller:ce2abfaac"
+        value: "quay.io/rekonflux/trace-demo/pipelines-as-code-controller:latest"
       - name: IMAGE_PAC_PAC_WATCHER
-        value: "quay.io/rekonflux/trace-demo/pipelines-as-code-watcher:ce2abfaac"
+        value: "quay.io/rekonflux/trace-demo/pipelines-as-code-watcher:latest"
       - name: IMAGE_PAC_PAC_WEBHOOK
-        value: "quay.io/rekonflux/trace-demo/pipelines-as-code-webhook:ce2abfaac"
+        value: "quay.io/rekonflux/trace-demo/pipelines-as-code-webhook:latest"
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
