@@ -1966,55 +1966,6 @@ spec:
                       requests:
                         cpu: 100m
                         memory: 128Mi
-        # PaC image overrides require patching the operator CSV directly.
-        pipelines-as-code-controller:
-          spec:
-            template:
-              spec:
-                containers:
-                  - name: pac-controller
-                    env:
-                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                        value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
-                    resources:
-                      limits:
-                        cpu: 300m
-                        memory: 256Mi
-                      requests:
-                        cpu: 100m
-                        memory: 128Mi
-        pipelines-as-code-watcher:
-          spec:
-            template:
-              spec:
-                containers:
-                  - name: pac-watcher
-                    env:
-                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                        value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
-                    resources:
-                      limits:
-                        cpu: 300m
-                        memory: 512Mi
-                      requests:
-                        cpu: 100m
-                        memory: 128Mi
-        pipelines-as-code-webhook:
-          spec:
-            template:
-              spec:
-                containers:
-                  - name: pac-webhook
-                    env:
-                      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                        value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
-                    resources:
-                      limits:
-                        cpu: 300m
-                        memory: 256Mi
-                      requests:
-                        cpu: 100m
-                        memory: 128Mi
         pipelines-console-plugin:
           spec:
             template:
@@ -2195,12 +2146,56 @@ spec:
         enable: true
         options:
           deployments:
+            pipelines-as-code-controller:
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: pac-controller
+                        env:
+                          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                            value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+                        resources:
+                          limits:
+                            cpu: 300m
+                            memory: 256Mi
+                          requests:
+                            cpu: 100m
+                            memory: 128Mi
             pipelines-as-code-watcher:
               spec:
                 replicas: 2
+                template:
+                  spec:
+                    containers:
+                      - name: pac-watcher
+                        env:
+                          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                            value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+                        resources:
+                          limits:
+                            cpu: 300m
+                            memory: 512Mi
+                          requests:
+                            cpu: 100m
+                            memory: 128Mi
             pipelines-as-code-webhook:
               spec:
                 replicas: 2
+                template:
+                  spec:
+                    containers:
+                      - name: pac-webhook
+                        env:
+                          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                            value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+                        resources:
+                          limits:
+                            cpu: 300m
+                            memory: 256Mi
+                          requests:
+                            cpu: 100m
+                            memory: 128Mi
   profile: all
   pruner:
     disabled: true
