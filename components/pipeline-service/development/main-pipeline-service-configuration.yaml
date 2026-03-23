@@ -2159,6 +2159,8 @@ spec:
                         env:
                           - name: OTEL_EXPORTER_OTLP_ENDPOINT
                             value: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+                          - name: K_OBSERVABILITY_CONFIG
+                            value: '{"metrics":{"protocol":"prometheus","endpoint":":9090"},"tracing":{"protocol":"grpc","endpoint":"open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317"}}'
                         resources:
                           limits:
                             cpu: 300m
