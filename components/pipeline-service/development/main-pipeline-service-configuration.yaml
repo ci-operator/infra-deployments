@@ -2149,6 +2149,7 @@ spec:
             pipelines-as-code-config-observability:
               data:
                 tracing-protocol: grpc
+                tracing-endpoint: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
           deployments:
             pipelines-as-code-controller:
               spec:
