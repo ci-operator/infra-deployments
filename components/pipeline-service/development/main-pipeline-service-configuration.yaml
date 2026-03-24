@@ -2150,6 +2150,7 @@ spec:
               data:
                 tracing-protocol: grpc
                 tracing-endpoint: open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4317
+                tracing-sampling-rate: "1.0"
           deployments:
             pipelines-as-code-controller:
               spec:
