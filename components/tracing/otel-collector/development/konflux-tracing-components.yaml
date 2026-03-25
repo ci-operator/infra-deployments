@@ -67,7 +67,7 @@ spec:
   source:
     git:
       url: https://github.com/ci-operator/pipelines-as-code
-      revision: distributed-tracing
+      revision: distributed-tracing-dev
       dockerfileUrl: Containerfile
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -82,7 +82,7 @@ spec:
   source:
     git:
       url: https://github.com/ci-operator/pipelines-as-code
-      revision: distributed-tracing
+      revision: distributed-tracing-dev
       dockerfileUrl: Containerfile
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -97,5 +97,32 @@ spec:
   source:
     git:
       url: https://github.com/ci-operator/pipelines-as-code
-      revision: distributed-tracing
+      revision: distributed-tracing-dev
       dockerfileUrl: Containerfile
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: integration-service
+  namespace: trace-demo
+  labels:
+    appstudio.redhat.com/component: integration-service
+    appstudio.redhat.com/application: konflux-tracing
+spec:
+  image:
+    visibility: private
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: integration-service
+  namespace: trace-demo
+spec:
+  application: konflux-tracing
+  componentName: integration-service
+  containerImage: quay.io/rekonflux/trace-demo/integration-service
+  source:
+    git:
+      url: https://github.com/ci-operator/integration-service
+      revision: distributed-tracing-dev
+      dockerfileUrl: Dockerfile
