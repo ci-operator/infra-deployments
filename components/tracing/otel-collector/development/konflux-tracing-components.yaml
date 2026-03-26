@@ -29,7 +29,7 @@ metadata:
     appstudio.redhat.com/application: konflux-tracing
 spec:
   image:
-    visibility: public
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: ImageRepository
@@ -41,7 +41,7 @@ metadata:
     appstudio.redhat.com/application: konflux-tracing
 spec:
   image:
-    visibility: public
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: ImageRepository
@@ -53,7 +53,7 @@ metadata:
     appstudio.redhat.com/application: konflux-tracing
 spec:
   image:
-    visibility: public
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: Component
@@ -110,7 +110,7 @@ metadata:
     appstudio.redhat.com/application: konflux-tracing
 spec:
   image:
-    visibility: public
+    visibility: private
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: Component
