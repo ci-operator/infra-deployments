@@ -2156,6 +2156,8 @@ spec:
               spec:
                 template:
                   spec:
+                    imagePullSecrets:
+                      - name: trace-demo-pull-secret
                     containers:
                       - name: pac-controller
                         env:
@@ -2173,6 +2175,8 @@ spec:
                 replicas: 2
                 template:
                   spec:
+                    imagePullSecrets:
+                      - name: trace-demo-pull-secret
                     containers:
                       - name: pac-watcher
                         env:
@@ -2190,6 +2194,8 @@ spec:
                 replicas: 2
                 template:
                   spec:
+                    imagePullSecrets:
+                      - name: trace-demo-pull-secret
                     containers:
                       - name: pac-webhook
                         env:
