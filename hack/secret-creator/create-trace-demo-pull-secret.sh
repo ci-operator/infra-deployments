@@ -2,26 +2,16 @@
 
 main() {
     local token=${1:?"Pull token was not provided"}
-    local namespace="openshift-pipelines"
-    local secret_name="trace-demo-pull-secret"
     local registry="quay.io"
     local robot_user="rekonflux+pullbot"
 
-    echo "Creating pull secret '$secret_name' in namespace '$namespace'"
-
-    oc create secret docker-registry "$secret_name" \
-        --docker-server="$registry" \
-        --docker-username="$robot_user" \
-        --docker-password="$token" \
-        --namespace="$namespace" \
-        -o yaml --dry-run=client | oc apply -f -
-
-    for sa in pipelines-as-code-controller pipelines-as-code-watcher pipelines-as-code-webhook; do
-        echo "Linking secret to service account '$sa'"
-        oc secrets link "$sa" "$secret_name" --for=pull --namespace="$namespace"
-    done
-
-    echo "Done"
+    echo "Adding trace-demo pull credentials to global pull secret"
+    auth=$(mktemp)
+    oc get secret/pull-secret -n openshift-config --template='{{index .data ".dockerconfigjson" | base64decode}}' > "$auth"
+    oc registry login --registry="$registry" --auth-basic="${robot_user}:${token}" --to="$auth"
+    oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson="$auth"
+    rm "$auth"
+    echo "Done — nodes will pick up the new credentials on next image pull"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
