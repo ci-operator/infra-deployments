@@ -72,11 +72,6 @@ patches:
     target:
       kind: ApplicationSet
       version: v1alpha1
-      name: konflux-info
-  - path: development-overlay-patch.yaml
-    target:
-      kind: ApplicationSet
-      version: v1alpha1
       name: ca-bundle
   - path: development-overlay-patch.yaml
     target:
@@ -101,11 +96,6 @@ patches:
       version: v1alpha1
       name: tracing-workload-tracing
   - path: development-overlay-patch.yaml
-    target:
-      kind: ApplicationSet
-      version: v1alpha1
-      name: tracing-workload-otel-collector
-  - path: otel-collector-use-contrib-image.yaml
     target:
       kind: ApplicationSet
       version: v1alpha1
@@ -205,8 +195,3 @@ patches:
       kind: ApplicationSet
       version: v1alpha1
       name: smee-client
-  - path: development-overlay-patch.yaml
-    target:
-      kind: ApplicationSet
-      version: v1alpha1
-      name: disaster-recovery

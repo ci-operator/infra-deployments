@@ -4,5 +4,6 @@ resources:
   - ../base
   - tempo-gateway-rbac.yaml
   - konflux-tracing-components.yaml
+  - konflux-info.yaml
 patchesStrategicMerge:
   - patch-delete-external-secrets.yaml

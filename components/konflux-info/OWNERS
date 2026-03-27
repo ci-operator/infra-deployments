@@ -8,6 +8,7 @@ approvers:
 - gbenhaim
 - hugares
 - manish-jangra
+- dperaza4dustbit
 # sre-team
 - dgregor
 - jdcasey
@@ -32,6 +33,7 @@ reviewers:
 - gbenhaim
 - hugares
 - manish-jangra
+- dperaza4dustbit
 # sre-team
 - dgregor
 - jdcasey
