@@ -126,3 +126,30 @@ spec:
       url: https://github.com/ci-operator/integration-service
       revision: distributed-tracing-dev
       dockerfileUrl: Dockerfile
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  name: release-service
+  namespace: trace-demo
+  labels:
+    appstudio.redhat.com/component: release-service
+    appstudio.redhat.com/application: konflux-tracing
+spec:
+  image:
+    visibility: private
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: release-service
+  namespace: trace-demo
+spec:
+  application: konflux-tracing
+  componentName: release-service
+  containerImage: quay.io/rekonflux/trace-demo/release-service
+  source:
+    git:
+      url: https://github.com/ci-operator/release-service
+      revision: distributed-tracing-dev
+      dockerfileUrl: Dockerfile
