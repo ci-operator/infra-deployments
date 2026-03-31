@@ -46,7 +46,8 @@ metadata:
   namespace: trace-demo
   labels:
     release.appstudio.openshift.io/auto-release: "true"
-    release.appstudio.openshift.io/author: user
+    release.appstudio.openshift.io/attribution: "true"
+    release.appstudio.openshift.io/author: jengland
 spec:
   application: konflux-tracing
   target: trace-demo-managed
