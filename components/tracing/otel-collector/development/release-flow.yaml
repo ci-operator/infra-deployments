@@ -47,7 +47,7 @@ metadata:
   labels:
     release.appstudio.openshift.io/auto-release: "true"
     release.appstudio.openshift.io/standing-attribution: "true"
-    release.appstudio.openshift.io/author: jengland
+    release.appstudio.openshift.io/author: system_serviceaccount_openshift-gitops_openshift-gitops-argocd
 spec:
   application: konflux-tracing
   target: trace-demo-managed
