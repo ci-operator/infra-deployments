@@ -6,6 +6,14 @@ metadata:
   labels:
     argocd.argoproj.io/managed-by: openshift-gitops
 ---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  name: pipelines-queue
+  namespace: trace-demo-managed
+spec:
+  clusterQueue: cluster-pipeline-queue
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
