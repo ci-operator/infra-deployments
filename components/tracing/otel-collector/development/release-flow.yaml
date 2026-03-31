@@ -1,0 +1,72 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: trace-demo-managed
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: release-sa
+  namespace: trace-demo-managed
+---
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: noop-release
+  namespace: trace-demo-managed
+spec:
+  params:
+  - name: release
+    type: string
+  - name: releasePlan
+    type: string
+  - name: releasePlanAdmission
+    type: string
+  - name: releaseServiceConfig
+    type: string
+  - name: snapshot
+    type: string
+  tasks:
+  - name: noop
+    taskSpec:
+      steps:
+      - name: noop
+        image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+        script: |
+          echo "Release pipeline completed successfully"
+    timeout: 5m
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ReleasePlan
+metadata:
+  name: trace-demo-release
+  namespace: trace-demo
+  labels:
+    release.appstudio.openshift.io/auto-release: "true"
+spec:
+  application: konflux-tracing
+  target: trace-demo-managed
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ReleasePlanAdmission
+metadata:
+  name: trace-demo-admission
+  namespace: trace-demo-managed
+spec:
+  applications:
+  - konflux-tracing
+  origin: trace-demo
+  pipeline:
+    pipelineRef:
+      resolver: cluster
+      params:
+      - name: name
+        value: noop-release
+      - name: namespace
+        value: trace-demo-managed
+      - name: kind
+        value: pipeline
+    serviceAccountName: release-sa
