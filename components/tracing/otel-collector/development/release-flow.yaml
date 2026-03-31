@@ -71,3 +71,18 @@ spec:
       - name: kind
         value: pipeline
     serviceAccountName: release-sa
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: trace-demo-policy
+  namespace: trace-demo-managed
+spec:
+  description: Permissive policy for tracing demo — skips all checks
+  configuration:
+    exclude:
+    - "*"
+  sources:
+  - name: default
+    policy:
+    - oci::quay.io/enterprise-contract/ec-release-policy:latest
