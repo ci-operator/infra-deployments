@@ -59,6 +59,7 @@ spec:
   applications:
   - konflux-tracing
   origin: trace-demo
+  policy: trace-demo-policy
   pipeline:
     pipelineRef:
       resolver: cluster
