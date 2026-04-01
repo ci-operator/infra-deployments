@@ -20,5 +20,9 @@ patches:
       kind: Deployment
       name: release-service-controller-manager
     path: manager-memory-patch.yaml
-patchesStrategicMerge:
-  - network-policy-otel-patch.yaml
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: NetworkPolicy
+      name: egress-controller-manager
+    path: network-policy-otel-patch.yaml
